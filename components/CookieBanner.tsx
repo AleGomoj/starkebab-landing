@@ -1,46 +1,50 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Cookie } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { useState, useEffect } from "react";
+import { Cookie } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface CookieBannerProps {
-  onAccept?: () => void
-  onReject?: () => void
+  onAccept?: () => void;
+  onReject?: () => void;
 }
 
-export default function CookieBanner({ onAccept, onReject }: CookieBannerProps) {
-  const [isVisible, setIsVisible] = useState(false)
+export default function CookieBanner({
+  onAccept,
+  onReject,
+}: CookieBannerProps) {
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     // Verificar si el usuario ya ha tomado una decisión
-    const cookieConsent = localStorage.getItem("cookie-consent")
+    const cookieConsent = localStorage.getItem("cookie-consent");
     if (!cookieConsent) {
-      setIsVisible(true)
+      setIsVisible(true);
     }
-  }, [])
+  }, []);
 
   const handleAccept = () => {
-    localStorage.setItem("cookie-consent", "accepted")
-    localStorage.setItem("cookie-consent-date", new Date().toISOString())
-    setIsVisible(false)
+    localStorage.setItem("cookie-consent", "accepted");
+    localStorage.setItem("cookie-consent-date", new Date().toISOString());
+    setIsVisible(false);
     if (onAccept) {
-      onAccept()
+      onAccept();
     }
-  }
+    window.location.reload();
+  };
 
   const handleReject = () => {
-    localStorage.setItem("cookie-consent", "rejected")
-    localStorage.setItem("cookie-consent-date", new Date().toISOString())
-    setIsVisible(false)
+    localStorage.setItem("cookie-consent", "rejected");
+    localStorage.setItem("cookie-consent-date", new Date().toISOString());
+    setIsVisible(false);
     if (onReject) {
-      onReject()
+      onReject();
     }
-  }
+  };
 
   if (!isVisible) {
-    return null
+    return null;
   }
 
   return (
@@ -52,17 +56,26 @@ export default function CookieBanner({ onAccept, onReject }: CookieBannerProps) 
               <Cookie className="w-6 h-6 text-red-500" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">🍪 Uso de Cookies</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                🍪 Uso de Cookies
+              </h3>
               <p className="text-gray-600 text-sm leading-relaxed mb-3">
-                Utilizamos cookies técnicas necesarias y Google Maps (que puede instalar cookies de terceros) para
-                mejorar tu experiencia. No recopilamos datos personales.
+                Utilizamos cookies técnicas necesarias y Google Maps (que puede
+                instalar cookies de terceros) para mejorar tu experiencia. No
+                recopilamos datos personales.
               </p>
               <div className="flex flex-wrap gap-2 text-xs">
-                <Link href="/politica-cookies" className="text-red-600 hover:text-red-800 underline">
+                <Link
+                  href="/politica-cookies"
+                  className="text-red-600 hover:text-red-800 underline"
+                >
                   Política de Cookies
                 </Link>
                 <span className="text-gray-400">•</span>
-                <Link href="/aviso-legal" className="text-red-600 hover:text-red-800 underline">
+                <Link
+                  href="/aviso-legal"
+                  className="text-red-600 hover:text-red-800 underline"
+                >
                   Aviso Legal
                 </Link>
               </div>
@@ -89,5 +102,5 @@ export default function CookieBanner({ onAccept, onReject }: CookieBannerProps) 
         </div>
       </div>
     </div>
-  )
+  );
 }
