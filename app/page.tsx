@@ -1,57 +1,73 @@
-"use client"
+"use client";
 
-import { Phone, Star, Award, Clock, MapPin, Menu, X, Download, ChefHat, Utensils } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import { useState } from "react"
-import CookieBanner from "@/components/CookieBanner"
-import { useCookieConsent } from "@/hooks/useCookieConsent"
-import { downloadStarKebabMenu } from "@/utils/downloadPDF"
-import Link from "next/link"
+import {
+  Phone,
+  Star,
+  Award,
+  Clock,
+  MapPin,
+  Menu,
+  X,
+  Download,
+  ChefHat,
+  Utensils,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { useState } from "react";
+import CookieBanner from "@/components/CookieBanner";
+import { useCookieConsent } from "@/hooks/useCookieConsent";
+import { downloadStarKebabMenu } from "@/utils/downloadPDF";
+import Link from "next/link";
 
 export default function StarKebabLanding() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { hasConsent, isLoading } = useCookieConsent()
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { hasConsent, isLoading } = useCookieConsent();
 
   const menuItems = [
     {
       name: "Menú Durum Mixto",
       description:
         "Selección de carnes marinadas con especias tradicionales, verduras frescas y salsas artesanales, acompáñalo con arroz o patatas fritas.",
-      image: "https://res.cloudinary.com/dqqfnbpmk/image/upload/v1753789330/menudurumweb_upmgat.jpg",
+      image:
+        "https://res.cloudinary.com/dqqfnbpmk/image/upload/v1753789330/menudurumweb_upmgat.jpg",
       category: "Menú",
     },
     {
       name: "Plato Star",
-      description: "Plato completo, compuesto por nuestra carne marinada, patatas o arroz y nuestra salsa casera.",
-      image: "https://res.cloudinary.com/dqqfnbpmk/image/upload/v1753789912/platostarweb_bwh1jp.jpg",
+      description:
+        "Plato completo, compuesto por nuestra carne marinada, patatas o arroz y nuestra salsa casera.",
+      image:
+        "https://res.cloudinary.com/dqqfnbpmk/image/upload/v1753789912/platostarweb_bwh1jp.jpg",
       category: "Platos Individuales",
     },
     {
       name: "Cabsaló Gratinado",
-      description: "Cazuela de patatas con carne especiada, salsas y queso, todo ello gratinado al horno",
-      image: "https://res.cloudinary.com/dqqfnbpmk/image/upload/v1753790444/cabsaloweb_vfokvz.png",
+      description:
+        "Cazuela de patatas con carne especiada, salsas y queso, todo ello gratinado al horno",
+      image:
+        "https://res.cloudinary.com/dqqfnbpmk/image/upload/v1753790444/cabsaloweb_vfokvz.png",
       category: "Platos Individuales",
     },
-  ]
+  ];
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   const handleDownloadMenu = () => {
     try {
-      downloadStarKebabMenu()
+      downloadStarKebabMenu();
     } catch (error) {
-      console.error("Error al descargar la carta:", error)
+      console.error("Error al descargar la carta:", error);
       // Fallback: abrir el PDF en una nueva pestaña
-      window.open("/carta-starkebab.pdf", "_blank")
+      window.open("/StarKebab-cartaweb.pdf", "_blank");
     }
-  }
+  };
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">
@@ -69,7 +85,9 @@ export default function StarKebabLanding() {
                 <span className="text-3xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
                   StarKebab
                 </span>
-                <p className="text-xs text-gray-500 font-medium tracking-wider uppercase">Bormujos</p>
+                <p className="text-xs text-gray-500 font-medium tracking-wider uppercase">
+                  Bormujos
+                </p>
               </div>
             </div>
 
@@ -93,8 +111,15 @@ export default function StarKebabLanding() {
             </nav>
 
             {/* Mobile Menu Button */}
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2 text-gray-700">
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 text-gray-700"
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
 
@@ -149,7 +174,9 @@ export default function StarKebabLanding() {
             <span className="bg-gradient-to-r from-gray-900 via-red-600 to-orange-500 bg-clip-text text-transparent">
               Star
             </span>
-            <span className="bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">Kebab</span>
+            <span className="bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+              Kebab
+            </span>
           </h1>
 
           <div className="max-w-4xl mx-auto mb-12">
@@ -157,8 +184,9 @@ export default function StarKebabLanding() {
               Sabores tradicionales del Mediterráneo oriental
             </p>
             <p className="text-lg text-gray-500 leading-relaxed">
-              Más de 20 años de experiencia culinaria se fusionan con ingredientes premium para crear una experiencia
-              gastronómica única en el corazón de Bormujos
+              Más de 20 años de experiencia culinaria se fusionan con
+              ingredientes premium para crear una experiencia gastronómica única
+              en el corazón de Bormujos
             </p>
           </div>
 
@@ -196,7 +224,9 @@ export default function StarKebabLanding() {
                 <div className="text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent mb-2">
                   {stat.number}
                 </div>
-                <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">{stat.label}</div>
+                <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -230,37 +260,63 @@ export default function StarKebabLanding() {
                     Local
                   </span>
                 </h2>
-                <p className="text-xl text-gray-600 font-light">En el corazón de Bormujos</p>
+                <p className="text-xl text-gray-600 font-light">
+                  En el corazón de Bormujos
+                </p>
               </div>
 
               <div className="space-y-6 text-gray-600 text-lg leading-relaxed mb-8">
                 <p className="text-xl leading-relaxed">
-                  <strong className="text-gray-900">Aziz</strong> trae a StarKebab más de{" "}
-                  <strong className="text-red-600">20 años de experiencia culinaria</strong>, apostando por algo
-                  diferente: comida auténtica, hecha con cariño y producto de primera calidad.
+                  <strong className="text-gray-900">Aziz</strong> trae a
+                  StarKebab más de{" "}
+                  <strong className="text-red-600">
+                    20 años de experiencia culinaria
+                  </strong>
+                  , apostando por algo diferente: comida auténtica, hecha con
+                  cariño y producto de primera calidad.
                 </p>
                 <p>
-                  Originario de <strong className="text-gray-900">Marruecos</strong>, ha recorrido un largo camino entre
-                  fogones antes de abrir su propio local, donde{" "}
-                  <strong className="text-red-600">la calidad y el sabor real son la base de todo</strong>.
+                  Originario de{" "}
+                  <strong className="text-gray-900">Marruecos</strong>, ha
+                  recorrido un largo camino entre fogones antes de abrir su
+                  propio local, donde{" "}
+                  <strong className="text-red-600">
+                    la calidad y el sabor real son la base de todo
+                  </strong>
+                  .
                 </p>
                 <p>
-                  Si buscas algo más que un kebab cualquiera, ven a probar el resultado de
-                  <strong className="text-gray-900"> dos décadas de experiencia y pasión culinaria</strong>.
+                  Si buscas algo más que un kebab cualquiera, ven a probar el
+                  resultado de
+                  <strong className="text-gray-900">
+                    {" "}
+                    dos décadas de experiencia y pasión culinaria
+                  </strong>
+                  .
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { icon: Award, title: "Maestro Cocinero", desc: "20 años de experiencia" },
-                  { icon: Star, title: "Ingredientes Premium", desc: "Selección diaria" },
+                  {
+                    icon: Award,
+                    title: "Maestro Cocinero",
+                    desc: "20 años de experiencia",
+                  },
+                  {
+                    icon: Star,
+                    title: "Ingredientes Premium",
+                    desc: "Selección diaria",
+                  },
                 ].map((item, index) => (
                   <div
                     key={index}
                     className="bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors duration-300"
                   >
                     <item.icon className="w-8 h-8 text-red-500 mb-3" />
-                    <h4 className="font-semibold text-gray-900 mb-1">{item.title}</h4>
+                    <h4 className="font-semibold text-gray-900 mb-1">
+                      {item.title}
+                    </h4>
                     <p className="text-sm text-gray-600">{item.desc}</p>
                   </div>
                 ))}
@@ -274,14 +330,18 @@ export default function StarKebabLanding() {
       <section id="menu" className="py-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <span className="text-red-500 font-semibold text-sm uppercase tracking-wider">Nuestras Especialidades</span>
+            <span className="text-red-500 font-semibold text-sm uppercase tracking-wider">
+              Nuestras Especialidades
+            </span>
             <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
               Carta{" "}
-              <span className="bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">Premium</span>
+              <span className="bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
+                Premium
+              </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Cada plato es una obra maestra culinaria, preparada con técnicas tradicionales y los ingredientes más
-              selectos del Mediterráneo
+              Cada plato es una obra maestra culinaria, preparada con técnicas
+              tradicionales y los ingredientes más selectos del Mediterráneo
             </p>
           </div>
 
@@ -319,7 +379,9 @@ export default function StarKebabLanding() {
                   <h3 className="text-2xl font-bold mb-3 group-hover:text-red-600 transition-colors duration-300">
                     {item.name}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                  <p className="text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -331,13 +393,17 @@ export default function StarKebabLanding() {
       <section id="contacto" className="py-32 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <span className="text-red-500 font-semibold text-sm uppercase tracking-wider">Visítanos</span>
+            <span className="text-red-500 font-semibold text-sm uppercase tracking-wider">
+              Visítanos
+            </span>
             <h2 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
               <span className="bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent">
                 Contacto
               </span>
             </h2>
-            <p className="text-xl text-gray-600">Llámanos para hacer tu pedido</p>
+            <p className="text-xl text-gray-600">
+              Llámanos para hacer tu pedido
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-20">
@@ -372,7 +438,9 @@ export default function StarKebabLanding() {
                   <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 rounded-full blur-lg opacity-20"></div>
                   <item.icon className="relative w-12 h-12 text-red-500 mx-auto" />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">{item.title}</h3>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">
+                  {item.title}
+                </h3>
                 {item.href ? (
                   <a
                     href={item.href}
@@ -381,7 +449,9 @@ export default function StarKebabLanding() {
                     {item.content}
                   </a>
                 ) : (
-                  <div className="text-2xl font-bold text-gray-900 mb-2">{item.content}</div>
+                  <div className="text-2xl font-bold text-gray-900 mb-2">
+                    {item.content}
+                  </div>
                 )}
                 <p className="text-gray-600">{item.subtitle}</p>
               </div>
@@ -413,12 +483,16 @@ export default function StarKebabLanding() {
                 <div className="bg-gray-100 h-[500px] flex items-center justify-center">
                   <div className="text-center p-8">
                     <MapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-gray-700 mb-2">Mapa no disponible</h3>
+                    <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                      Mapa no disponible
+                    </h3>
                     <p className="text-gray-600 mb-4 max-w-md">
-                      Para ver el mapa interactivo de nuestra ubicación, necesitas aceptar el uso de cookies.
+                      Para ver el mapa interactivo de nuestra ubicación,
+                      necesitas aceptar el uso de cookies.
                     </p>
                     <p className="text-sm text-gray-500">
-                      <strong>Dirección:</strong> Av. Universidad de Salamanca, 8<br />
+                      <strong>Dirección:</strong> Av. Universidad de Salamanca,
+                      8<br />
                       41930 Bormujos, Sevilla
                     </p>
                   </div>
@@ -444,21 +518,31 @@ export default function StarKebabLanding() {
               <p className="text-sm text-gray-400">Bormujos, Sevilla</p>
             </div>
           </div>
-          <p className="text-gray-400 mb-4">Auténticos sabores del Mediterráneo Oriental.</p>
+          <p className="text-gray-400 mb-4">
+            Auténticos sabores del Mediterráneo Oriental.
+          </p>
           <div className="flex flex-wrap justify-center gap-4 mb-4 text-sm">
-            <Link href="/aviso-legal" className="text-gray-400 hover:text-red-400 transition-colors duration-300">
+            <Link
+              href="/aviso-legal"
+              className="text-gray-400 hover:text-red-400 transition-colors duration-300"
+            >
               Aviso Legal
             </Link>
             <span className="text-gray-600">•</span>
-            <Link href="/politica-cookies" className="text-gray-400 hover:text-red-400 transition-colors duration-300">
+            <Link
+              href="/politica-cookies"
+              className="text-gray-400 hover:text-red-400 transition-colors duration-300"
+            >
               Política de Cookies
             </Link>
           </div>
-          <p className="text-gray-500 text-sm">© 2025 StarKebab. Todos los derechos reservados.</p>
+          <p className="text-gray-500 text-sm">
+            © 2025 StarKebab. Todos los derechos reservados.
+          </p>
         </div>
       </footer>
       {/* Cookie Banner */}
       <CookieBanner />
     </div>
-  )
+  );
 }
